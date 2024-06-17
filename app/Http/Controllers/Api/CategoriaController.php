@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
+     /**
+     * Cria nova categoria com os dados fornecidos na requisição.
+     * 
+     * @param Illuminate\Http\Request $request O objeto de requisição contendo os dados da categoria a ser criado.
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function store(Request $request) : JsonResponse
     {
         DB::beginTransaction();
@@ -34,6 +41,16 @@ class CategoriaController extends Controller
         }
     }
 
+
+    /**
+     * Retorna uma lista de categorias.
+     * 
+     * Este método recupera uma lista de categorias do banco de dados e retorna como uma 
+     * resposta JSON.
+     * 
+     * @Return \Illuminate\Http\JsonResponse 
+     */
+
     public function index() : JsonResponse
     {
         $categoria = Categoria::orderBy('id', 'DESC')->get();
@@ -44,6 +61,15 @@ class CategoriaController extends Controller
         ], 200);
     }
 
+    /**
+     * Exibe os detalhes de uma categoria específica.
+     * 
+     * Este método retorna os detalhes de uma categoria específica em formato JSON.
+     * 
+     * @param \App\Models\Categoria $categoria O objeto da categoria a ser exibida
+     * @return \Illuminate\Http\JsonResponse 
+     */
+
     public function show(Categoria $categoria) : JsonResponse
     {
         return response()->json([
@@ -51,6 +77,15 @@ class CategoriaController extends Controller
             'categoria' => $categoria
         ], 200);
     }
+
+
+    /**
+     * Atualizar os dados de uma categoria existente com base nos dados fornecidos na requisição.
+     * 
+     * @param \Illuminate\Http\Request $request O objeto de requisição contendo os dados da categoria a ser atualizada.
+     * @param \App\Models\Categoria $cateoria A categoria a ser atualziado.
+     * @return \Illuminate\Http\JsonResponse
+     */
 
     public function update(Request $request, Categoria $categoria) : JsonResponse
     {   
@@ -76,6 +111,14 @@ class CategoriaController extends Controller
             ], 400);
         } 
     }
+
+
+    /**
+     * Exclui a categoria no banco de dados.
+     * 
+     * @param \App\Models\Categoria
+     * @return \Illuminate\Http\JsonResponse
+     */
 
     public function destroy(Categoria $categoria) : JsonResponse
     {

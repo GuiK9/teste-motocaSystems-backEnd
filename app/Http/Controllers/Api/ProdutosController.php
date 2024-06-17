@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class ProdutosController extends Controller
 {
+    /**
+     * Cria novo produto com os dados fornecidos na requisição.
+     * 
+     * @param Illuminate\Http\Request $request O objeto de requisição contendo os dados do produto a ser criado.
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function store(Request $request) : JsonResponse
     {
         DB::beginTransaction();
@@ -37,6 +44,17 @@ class ProdutosController extends Controller
         }
     }
 
+
+    /**
+     * Retorna uma lista de produtos.
+     * 
+     * Este método recupera uma lista de produtos do banco de dados e retorna como uma 
+     * resposta JSON.
+     * 
+     * @Return \Illuminate\Http\JsonResponse 
+     */
+       
+
     public function index() : JsonResponse
     {
         $produto = Produto::orderBy('id', 'DESC')->get();
@@ -47,6 +65,16 @@ class ProdutosController extends Controller
         ], 200);
     }
 
+
+     /**
+     * Exibe os detalhes de um produto específico.
+     * 
+     * Este método retorna os detalhes de um produto específico em formato JSON.
+     * 
+     * @param \App\Models\Produto $produto O objeto do produto a ser exibido
+     * @return \Illuminate\Http\JsonResponse 
+     */
+
     public function show(Produto $produto) : JsonResponse
     {
         return response()->json([
@@ -54,6 +82,14 @@ class ProdutosController extends Controller
             'produto' => $produto,
         ], 200);
     }
+
+    /**
+     * Atualizar os dados de um produto existente com base nos dados fornecidos na requisição.
+     * 
+     * @param Illuminate\Http\Request $request O objeto de requisição contendo os dados do produto a ser atualizado.
+     * @param \App\Models\Produto $produto O produto a ser atualziado.
+     * @return \Illuminate\Http\JsonResponse
+     */
 
     public function update(Request $request, Produto $produto) : JsonResponse
     {   
@@ -82,6 +118,14 @@ class ProdutosController extends Controller
             ], 400);
         } 
     }
+
+
+    /**
+     * Exclui prduto no banco de dados.
+     * 
+     * @param \App\Models\Produto
+     * @return \Illuminate\Http\JsonResponse
+     */
 
     public function destroy(Produto $produto) : JsonResponse
     {
