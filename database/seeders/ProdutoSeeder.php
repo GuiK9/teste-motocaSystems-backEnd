@@ -15,34 +15,10 @@ class ProdutoSeeder extends Seeder
     public function run(): void
     {   
 
-        $altaCCCategoriaId = Categoria::where('descricao', 'Alta cilindrada')->first();
-        if (!$altaCCCategoriaId) {
-            $altaCCCategoriaId = Categoria::create([
-                'descricao' => 'Alta cilindrada'
-            ])->id;
-        } else {
-            $altaCCCategoriaId = $altaCCCategoriaId->id;
-        }
+        $altaCCCategoriaId = Categoria::where('descricao', 'Alta cilindrada')->first()->id;
+        $baixaCCCategoriaId = Categoria::where('descricao', 'Baixa cilindrada')->first()->id;
 
-        $baixaCCCategoriaId = Categoria::where('descricao', 'Baixa cilindrada')->first();
-        if (!$baixaCCCategoriaId) {
-            $baixaCCCategoriaId = Categoria::create([
-                'descricao' => 'Baixa cilindrada'
-            ])->id;
-        } else {
-            $baixaCCCategoriaId = $baixaCCCategoriaId->id;
-        }
         
-        if(!Produto::Where('nome', 'CB 650R')->first()){
-            Produto::create([
-                'nome' => 'CB 650R',
-                'descricao' => 'Esportiva com estilo Neo Sports Café e motor de quatro cilindros em linha.',
-                'preco' => 52590,
-                'categoria_id' => $altaCCCategoriaId
-            ]);
-        };
-
-
         if(!Produto::Where('nome', 'CB 650R')->first()){
             Produto::create([
                 'nome' => 'CB 650R',
