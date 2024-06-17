@@ -93,3 +93,6 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO api_main;
  ```
  php artisan db:seed
  ```
+
+### Documentação
+https://documenter.getpostman.com/view/36316306/2sA3XS9fnT
