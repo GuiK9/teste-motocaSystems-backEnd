@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('descricao');
             $table->decimal('preco', total: 8, places: 2);
             $table->unsignedBigInteger('catagoria_id');
-            $table->foreign('catagoria_id')->references('id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
         });
     }
 
